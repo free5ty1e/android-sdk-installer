@@ -41,6 +41,9 @@ case $i in
     --accept=*)
     LICENSES=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
     ;;
+    --no-https)
+    NO_HTTPS="--no-https"
+    ;;
     *)
     # unknown option
     ;;
@@ -88,4 +91,4 @@ echo "export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$TOOLS_DIR:\$
 ALL_INSTALL=$DEFAULT_INSTALL,$INSTALL
 
 echo "Installing $ALL_INSTALL"
-$TOOLS_DIR/accept-licenses "$ANDROID_HOME/tools/android update sdk --no-ui -a --filter $ALL_INSTALL" "$LICENSES"
+$TOOLS_DIR/accept-licenses "$ANDROID_HOME/tools/android update sdk --no-ui -a $NO_HTTPS --filter $ALL_INSTALL" "$LICENSES"
